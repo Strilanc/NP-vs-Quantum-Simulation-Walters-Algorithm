@@ -8,4 +8,4 @@ Notice the way the right-side bits seem to be pulled to 100% in this recording:
 
 ![Typical run](http://algorithmicassertions.com/assets/2016-06-19-quantum-vs-np-2b/simulation-trace.gif)
 
-For some problem families, the effect gets exponentially stronger as the number of bits is increased.
+For some problem families, the effect gets exponentially stronger as the number of variables is increased.
