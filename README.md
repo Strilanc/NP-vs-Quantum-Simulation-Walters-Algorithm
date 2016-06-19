@@ -4,7 +4,7 @@ This repository contains code for simulating Zachery B Walter's [claimed Linear-
 
 Based on the behavior of the simulation, [I think the algorithm is actually exponential time](http://algorithmicassertions.com/post/1617).
 
-Notice the way the right-side bits seem pinned to 100%:
+Notice the way the right-side bits seem to be pulled to 100%:
 
 ![Typical run](http://algorithmicassertions.com/assets/2016-06-19-quantum-vs-np-2b/simulation-trace.gif)
 
