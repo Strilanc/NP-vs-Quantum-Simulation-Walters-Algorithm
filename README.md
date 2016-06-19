@@ -1,2 +1,1 @@
-# NP-vs-Quantum-Simulation-Walters-Algorithm
-Simulates the algorithm from the paper ['A linear time quantum algorithm for 3SAT'](http://arxiv.org/abs/1510.00409), showing it doesn't work.
+This repository contains code for simulating Zachery B Walter's [claimed Linear-time 3SAT algorithm](http://arxiv.org/abs/1510.00409) with Microsoft's LIQUID, as well as code for simulating the classical variant of the algorithm.
