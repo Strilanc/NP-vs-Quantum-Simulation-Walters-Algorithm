@@ -66,12 +66,13 @@ module WaltersAlgorithmSimulator =
         List.concat [seed; chain; reset]
 
     // Perturb-if-not-satisfied-er.
-    let decimate (power:int) (qs:Qubits) (Clause(A, B, C)) =
+    let decimate (power1:int) (power2:int) (qs:Qubits) (Clause(A, B, C)) =
         let CCCNot = Operations.Cgate Operations.CCNOT
         let CPerturb = Operations.Cgate (fun reg ->
-            // Turn the Z^(2^-power) gate into an X rotation via surrounding Hadamards
+            // Turn the Z^(2^-power1 + 2^-power2) gate into an X rotation via surrounding Hadamards
             Operations.H reg
-            Operations.R -power reg
+            Operations.R -power1 reg
+            Operations.R -power2 reg
             Operations.H reg)
 
         let scratch = qs.[qs.Length-1]
@@ -105,17 +106,20 @@ module WaltersAlgorithmSimulator =
             Operations.H [var]
 
         // Decimate every clause again and again until we hit the given number of repetitions.
+        let rand = new Random()
         for i in 1..steps do
             // The decimation power starts high (90 deg) and scales down slowly over time.
-            let power = -((float >> Math.Log10 >> Math.Ceiling >> int) (i+10))
+            let power1 = -3
 
             for clause in clauses do
-                decimate power vars clause
+                let power2 = if rand.NextDouble() < 0.5 then -2 else -3
+                decimate power1 power2 vars clause
             
             // Debug output.
-            let degs = 360.0*Math.Pow(2.0, float(power))
             let probs = String.Join(" ", (vars |> List.map (fun e -> String.Format("{0:0}%", e.Prob1*100.0).PadLeft(4))))
-            printf "Iter %d, Perturbing %f degs, Qubit Probs %s\n" i degs probs
+            let degs1 = 360.0*(Math.Pow(2.0, float(power1)) + Math.Pow(2.0, float(power1) + float(-1)))
+            let degs2 = 360.0*(Math.Pow(2.0, float(power1)) + Math.Pow(2.0, float(power1) + float(-2)))
+            printf "Iter %d, Angles %0.1f vs %0.1f degs, Qubit Probs %s\n" i degs1 degs2 probs
 
         // Measure result.
         for var in vars do
@@ -125,7 +129,7 @@ module WaltersAlgorithmSimulator =
     let Main _ =
         // Choose parameters
         let varCount = 8
-        let steps = 2000
+        let steps = 1000
         let clauses = evil3SatInstance varCount
         printf "Clauses:\n%s\n\n" (clausesToString clauses)
 
