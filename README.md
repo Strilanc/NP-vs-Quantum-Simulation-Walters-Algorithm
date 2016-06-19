@@ -4,8 +4,8 @@ This repository contains code for simulating Zachery B Walter's [claimed Linear-
 
 Based on the behavior of the simulation, and my analysis of the algorithm, [I say it's actually exponential time](http://algorithmicassertions.com/post/1617).
 
-Notice the way the right-side bits seem to be pulled to 100%:
+Notice the way the right-side bits seem to be pulled to 100% in this recording:
 
 ![Typical run](http://algorithmicassertions.com/assets/2016-06-19-quantum-vs-np-2b/simulation-trace.gif)
 
-The effect gets exponentially stronger as the number of bits is increased.
+For some problem families, the effect gets exponentially stronger as the number of bits is increased.
