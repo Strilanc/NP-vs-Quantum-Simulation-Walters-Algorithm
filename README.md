@@ -2,7 +2,7 @@ This repository contains code for simulating Zachery B Walter's [claimed Linear-
 
 ## Results
 
-Based on the behavior of the simulation, [I think the algorithm is actually exponential time](http://algorithmicassertions.com/post/1617).
+Based on the behavior of the simulation, and my analysis of the algorithm, [I say it's actually exponential time](http://algorithmicassertions.com/post/1617).
 
 Notice the way the right-side bits seem to be pulled to 100%:
 
